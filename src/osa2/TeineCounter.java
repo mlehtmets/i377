@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSessionListener;
 /**
  * Servlet implementation class TeineCounter
  */
-public class TeineCounter extends HttpServlet {
+public class TeineCounter extends HttpServlet implements HttpSessionListener {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -22,23 +22,20 @@ public class TeineCounter extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter pw = response.getWriter();
 		//Avatud sessioonide arv 
-		SessionCounterListener count = new SessionCounterListener();
-		pw.println("Count: " + count.totalActiveSessions);
+		pw.println("count: " + getTotalActiveSession());
 	}
-
-	public static class SessionCounterListener implements HttpSessionListener {
-		private static int totalActiveSessions;
-		@Override
-		public void sessionCreated(HttpSessionEvent event) {
-			totalActiveSessions++;
-		}
-		@Override
-		public void sessionDestroyed(HttpSessionEvent event) {
-			totalActiveSessions--;
-		}
-		public static int getTotalActiveSession() {
-			return totalActiveSessions;
-		}
+	
+	private static int totalActiveSessions;
+	@Override
+	public void sessionCreated(HttpSessionEvent event) {
+		totalActiveSessions++;
+	}
+	@Override
+	public void sessionDestroyed(HttpSessionEvent event) {
+		totalActiveSessions--;
+	}
+	public static int getTotalActiveSession() {
+		return totalActiveSessions;
 	}
 
 }

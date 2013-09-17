@@ -1,4 +1,4 @@
-package test;
+package osa1;
 
 
 import java.io.IOException;
