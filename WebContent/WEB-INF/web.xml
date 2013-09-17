@@ -19,4 +19,39 @@
     <servlet-name>Hello</servlet-name>
     <url-pattern>/Hello</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EsimeneSessionId</display-name>
+    <servlet-name>EsimeneSessionId</servlet-name>
+    <servlet-class>osa2.EsimeneSessionId</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EsimeneSessionId</servlet-name>
+    <url-pattern>/EsimeneSessionId</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TeineCounter</display-name>
+    <servlet-name>TeineCounter</servlet-name>
+    <servlet-class>osa2.TeineCounter</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TeineCounter</servlet-name>
+    <url-pattern>/TeineCounter</url-pattern>
+  </servlet-mapping>
+  <listener>
+    <listener-class>
+		osa2.TeineCounter
+	</listener-class>
+  </listener>
+  <servlet>
+    <description></description>
+    <display-name>KolmasLogOut</display-name>
+    <servlet-name>KolmasLogOut</servlet-name>
+    <servlet-class>osa2.KolmasLogOut</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>KolmasLogOut</servlet-name>
+    <url-pattern>/KolmasLogOut</url-pattern>
+  </servlet-mapping>
 </web-app>
