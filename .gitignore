@@ -1,8 +1,6 @@
 /build
-/bin
 *.class
+/WebContent/WEB-INF/lib/*.jar
 
 # Package Files #
-*.jar
-*.war
 *.ear
