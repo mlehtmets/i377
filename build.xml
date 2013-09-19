@@ -11,12 +11,14 @@
 <property name="managerUrl" value="http://localhost.8080/manager/text/" />
 <property name="managerUsername" value="tomcat" />
 <property name="managerPassword" value="tomcat" />
-<property name="dir.lib" value="WebContent/WEBINF/lib" />
 <property name="ivy.retrieve.pattern" value="${dir.lib}/[artifact][type][revision].[ext]" />
 <property name="ivylib.dir" value="${basedir}/lib" />
 
 <!-- Pathid -->	
 <path id="compile.classpath">
+	<fileset dir="${ivylib.dir}">
+		<include name="*.jar" />
+	</fileset>
 	<fileset dir="${lib.dir}">
 		<include name="*.jar" />
 	</fileset>
@@ -31,8 +33,13 @@
 	</fileset>
 </path>
 
-<path id="classpath">
-	<fileset dir="lib" />
+<path id="classpath.retrieve">
+	<fileset dir="${tomcat.dir}/lib">
+		<include name="*.jar" />
+	</fileset>
+	<fileset dir="" >
+		<include name="*.jar" />
+	</fileset>
 </path>
 	
 <!-- Targetid -->
@@ -74,8 +81,8 @@
 </target>
 
 <target name="retrieve" description="retreive dependencies">
-	<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="classpath" />
-	<ivy:resolve file="${basedir}/ivy.xml" log="download-only" />
+	<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="classpath.retrieve" />
+	<ivy:resolve file="${basedir}/ivy.xml" log="downloadonly" />
 	<ivy:retrieve pattern="${ivy.retrieve.pattern}" conf="default" />
 </target>
 
