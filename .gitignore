@@ -2,5 +2,3 @@
 *.class
 /WebContent/WEB-INF/lib/*.jar
 
-# Package Files #
-*.ear
