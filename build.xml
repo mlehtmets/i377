@@ -1,10 +1,10 @@
 <?xml version="1.0" ?>
 <project name="mlehtmets" basedir="." default="war" xmlns:ivy="antlib:org.apache.ivy.ant">
 <!-- Propertid -->
-<property name="src.dir" location="src"/>
-<property name="build.dir" location="build"/>
+<property name="src.dir" location="${basedir}/src"/>
+<property name="build.dir" location="${basedir}/build"/>
 <property name="classes.dir" location="${build.dir}/classes"/>
-<property name="webContent.dir" location="webContent"/>
+<property name="webContent.dir" location="${basedir}/WebContent"/>
 <property name="lib.dir" location="${webContent.dir}/WEB-INF/lib"/>
 <property name="basedir" location="." />
 <property name="war.file" value="mlehtmets.war"/>
@@ -45,7 +45,7 @@
 	
 <!-- Targetid -->
 
-<target name="compile" depends="init, clean">
+<target name="compile" depends="init, clean, retrieve">
 	<javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false">
 		<classpath refid="compile.classpath" />
 	</javac>
@@ -66,15 +66,15 @@
 	</war>
 </target>
 
-<target name="copy.resources">
+<!-- <target name="copy.resources">
 	<copy todir="${classes.dir}" includeemptydirs="false">
 		<fileset dir="${src.dir}" excludes="**/*.java"/>
 	</copy>
-</target>
+</target> -->
 	
 <target name="deploy" depends="war">
-	<taskdef name="deploy" classname="org.apache.catalina.ant.DeployTask"/>
-	<deploy url="${managerUrl}" username="${managerUsername}" password="${managerPassword}" path="${deployContextPath}" update="true" war="file:${war.fail} "/>
+	<taskdef name="deploy" classname="org.apache.catalina.ant.DeployTask" classpathref="classpath.tomcat"/>
+	<deploy url="${managerUrl}" username="${managerUsername}" password="${managerPassword}" path="${deployContextPath}" update="true" war="file:${war.file} "/>
 </target>
 
 <target name="undeploy" description="Remove web application">
