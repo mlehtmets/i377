@@ -26,19 +26,16 @@
 </path>
 
 <path id="classpath.tomcat">
-	<fileset dir="${dir.tomcat}/lib">
-		<include name="*.jar" />
-	</fileset>
-	<fileset dir="${dir.tomcat}/bin">
+	<fileset dir="${tomcat.dir}/lib">
 		<include name="*.jar" />
 	</fileset>
 </path>
 
 <path id="classpath.retrieve">
-	<fileset dir="${tomcat.dir}/lib">
+	<fileset dir="${ivylib.dir}/lib">
 		<include name="*.jar" />
 	</fileset>
-	<fileset dir="" >
+	<fileset dir="${lib.dir}" >
 		<include name="*.jar" />
 	</fileset>
 </path>
@@ -77,10 +74,11 @@
 	<deploy url="${managerUrl}" username="${managerUsername}" password="${managerPassword}" path="${deployContextPath}" update="true" war="file:${war.file} "/>
 </target>
 
+<!--
 <target name="undeploy" description="Remove web application">
 	<taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask"/>
 	<undeploy url="${managerUrl}" username="${managerUsername}" password="${managerPassword}" path="${deployContextPath}"/>
-</target>
+</target> -->
 
 <target name="retrieve" description="retreive dependencies">
 	<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="classpath.retrieve" />
