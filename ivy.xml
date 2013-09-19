@@ -1,0 +1,11 @@
+<!DOCTYPE project>
+<ivy-module version="2.0">
+<info organisation="" module=""/>
+<configurations defaultconf="default" />
+<dependencies>
+<dependency org="org.seleniumhq.selenium" name="selenium-firefox-driver" rev="2.33.0"/>
+<dependency org="org.seleniumhq.selenium" name="selenium-support" rev="2.33.0"/>
+<dependency org="junit" name="junit" rev="4.11"/>
+<dependency org="pl.pragmatists" name="JUnitParams" rev="1.0.2"/>
+</dependencies>
+</ivy-module>
