@@ -11,14 +11,9 @@
 <property name="managerUsername" value="tomcat" />
 <property name="dir.lib" value="WebContent/WEBINF/lib" />
 <property name="ivy.retrieve.pattern" value="${dir.lib}/[artifact][type][revision].[ext]" />
+<property name="ivylib.dir" value="${basedir}/lib" />
 
 <!-- Pathid -->	
-<path id="compile.classpath">
-	<fileset dir="${lib.dir}">
-		<include name="*.jar"/>
-	</fileset>
-</path>
-
 <path id="compile.classpath">
 	<fileset dir="${lib.dir}">
 		<include name="*.jar" />
