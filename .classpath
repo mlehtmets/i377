@@ -17,4 +17,5 @@
 	<classpathentry kind="lib" path="C:/Users/Mart/Desktop/Veebirakendused Java baasil/junit-4.11.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Mart/Desktop/Veebirakendused Java baasil/hamcrest-core-1.3.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
+	<classpathentry kind="lib" path="lib/ivy-2.3.0.jar"/>
 </classpath>
