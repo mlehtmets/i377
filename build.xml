@@ -42,14 +42,14 @@
 	
 <!-- Targetid -->
 
-<target name="compile" depends="init, clean, retrieve">
+<target name="init">
+	<mkdir dir="${classes.dir}" />
+</target>
+	
+<target name="compile" depends="clean, init, retrieve">
 	<javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false">
 		<classpath refid="compile.classpath" />
 	</javac>
-</target>
-
-<target name="init">
-	<mkdir dir="${classes.dir}" />
 </target>
 		
 <target name="clean">
