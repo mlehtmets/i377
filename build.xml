@@ -44,13 +44,6 @@
 </path>
 	
 <!-- Targetid -->
-<target name="init">
-	<mkdir dir="${classes.dir}" />
-</target>
-	
-<target name="clean">
-	<delete dir="${build.dir}" />
-</target>
 
 <target name="compile" depends="init, clean">
 	<javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false">
@@ -58,6 +51,14 @@
 	</javac>
 </target>
 
+<target name="init">
+	<mkdir dir="${classes.dir}" />
+</target>
+		
+<target name="clean">
+	<delete dir="${build.dir}" />
+</target>
+	
 <target name="war" depends="compile">
 	<war destfile="${war.file}" webxml="${webContent.dir}/WEB-INF/web.xml">
 		<classes dir="${classes.dir}"/>
