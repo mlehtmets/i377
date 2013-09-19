@@ -3,9 +3,6 @@
 <info organisation="" module=""/>
 <configurations defaultconf="default" />
 <dependencies>
-<dependency org="org.seleniumhq.selenium" name="selenium-firefox-driver" rev="2.33.0"/>
-<dependency org="org.seleniumhq.selenium" name="selenium-support" rev="2.33.0"/>
-<dependency org="junit" name="junit" rev="4.11"/>
-<dependency org="pl.pragmatists" name="JUnitParams" rev="1.0.2"/>
+<dependency org="javax.servlet" name="servlet-api" rev="2.4"/>
 </dependencies>
 </ivy-module>

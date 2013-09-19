@@ -7,8 +7,10 @@
 <property name="webContent.dir" value="webContent"/>
 <property name="lib.dir" value="${webContent.dir}/WEB-INF/lib"/>
 <property name="war.file" value="mlehtmets.war"/>
-<property file="user.properties" />
+<property file="user.properties" value="." />
+<property name="managerUrl" value="http://localhost.8080/manager/text/" />
 <property name="managerUsername" value="tomcat" />
+<property name="managerPassword" value="tomcat" />
 <property name="dir.lib" value="WebContent/WEBINF/lib" />
 <property name="ivy.retrieve.pattern" value="${dir.lib}/[artifact][type][revision].[ext]" />
 <property name="ivylib.dir" value="${basedir}/lib" />
