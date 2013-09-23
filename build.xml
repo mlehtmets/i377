@@ -59,7 +59,7 @@
 <target name="war" depends="compile">
 	<war destfile="${war.file}" webxml="${webContent.dir}/WEB-INF/web.xml">
 		<classes dir="${classes.dir}"/>
-		<fileset dir="${webContent.dir}/WEB-INF/lib" excludes="**/servlet-api-jar-2.4.jar"/>
+		<fileset dir="${webContent.dir}/WEB-INF/lib" excludes="**/servletapi.jar"/>
 	</war>
 </target>
 
