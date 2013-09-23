@@ -1,0 +1,4 @@
+<?xml version="1.0" ?>
+<project name="HEllo">
+	<echo>hello</echo>
+</project>

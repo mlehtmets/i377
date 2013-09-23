@@ -54,4 +54,14 @@
     <servlet-name>KolmasLogOut</servlet-name>
     <url-pattern>/KolmasLogOut</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Hello2</display-name>
+    <servlet-name>Hello2</servlet-name>
+    <servlet-class>praktikum2.Hello2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Hello2</servlet-name>
+    <url-pattern>/Hello2</url-pattern>
+  </servlet-mapping>
 </web-app>
