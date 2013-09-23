@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSessionListener;
 /**
  * Servlet implementation class TeineCounter
  */
-public class TeineCounter extends HttpServlet implements HttpSessionListener {
+public class SessionCount extends HttpServlet implements HttpSessionListener {
 	private static final long serialVersionUID = 1L;
 
 	/**
