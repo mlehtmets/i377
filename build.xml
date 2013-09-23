@@ -32,7 +32,7 @@
 </path>
 
 <path id="classpath.retrieve">
-	<fileset dir="${ivylib.dir}/lib">
+	<fileset dir="${ivylib.dir}">
 		<include name="*.jar" />
 	</fileset>
 	<fileset dir="${lib.dir}" >
