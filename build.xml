@@ -12,11 +12,7 @@
 <property name="managerUrl" value="http://localhost.8080/manager/text/" />
 <property name="managerUsername" value="tomcat" />
 <property name="managerPassword" value="tomcat" />
-<<<<<<< HEAD
 <property name="ivy.retrieve.pattern" location="${lib.dir}/[artifact][type][revision].[ext]" />
-=======
-<property name="ivy.retrieve.pattern" location="${lib.dir}/[artifact]-[type]-[revision].[ext]" />
->>>>>>> 8404ff7e97f3cd32a28316d3086973e1c234c0e9
 <property name="ivylib.dir" location="${basedir}/lib" />
 
 <!-- Pathid -->	
@@ -43,27 +39,27 @@
 		<include name="*.jar" />
 	</fileset>
 </path>
-	
+
 <!-- Targetid -->
 
 <target name="init">
 	<mkdir dir="${classes.dir}" />
 </target>
-	
+
 <target name="compile" depends="clean, init, retrieve">
-	<javac srcdir="${src.dir}" destdir="${classes.dir}" source="1.6" target="1.6" includeantruntime="false">
+	<javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false">
 		<classpath refid="compile.classpath" />
 	</javac>
 </target>
-		
+
 <target name="clean">
 	<delete dir="${build.dir}" />
 </target>
-	
+
 <target name="war" depends="compile">
 	<war destfile="${war.file}" webxml="${webContent.dir}/WEB-INF/web.xml">
 		<classes dir="${classes.dir}"/>
-		<fileset dir="${webContent.dir}/WEB-INF/lib" excludes="**/servlet-api-jar-2.5.jar"/>
+		<fileset dir="${webContent.dir}" excludes="**/servlet-api.jar"/>
 	</war>
 </target>
 
@@ -72,17 +68,17 @@
 		<fileset dir="${src.dir}" excludes="**/*.java"/>
 	</copy>
 </target> -->
-	
+
 <target name="deploy" depends="war">
 	<taskdef name="deploy" classname="org.apache.catalina.ant.DeployTask" classpathref="classpath.tomcat"/>
 	<deploy url="${managerUrl}" username="${managerUsername}" password="${managerPassword}" path="${deployContextPath}" update="true" war="file:${war.file} "/>
 </target>
 
-
+<!--
 <target name="undeploy" description="Remove web application">
 	<taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask"/>
 	<undeploy url="${managerUrl}" username="${managerUsername}" password="${managerPassword}" path="${deployContextPath}"/>
-</target>
+</target> -->
 
 <target name="retrieve" description="retreive dependencies">
 	<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="classpath.retrieve" />
