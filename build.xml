@@ -47,7 +47,7 @@
 </target>
 
 <target name="compile" depends="clean, init, retrieve">
-	<javac srcdir="${src.dir}" destdir="${classes.dir}" source="1.6" target="1.6" includeantruntime="false">
+	<javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false">
 		<classpath refid="compile.classpath" />
 	</javac>
 </target>
