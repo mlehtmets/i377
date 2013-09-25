@@ -11,57 +11,37 @@
   </welcome-file-list>
   <servlet>
     <description></description>
-    <display-name>Hello</display-name>
-    <servlet-name>Hello</servlet-name>
-    <servlet-class>test.Hello</servlet-class>
+    <display-name>HomePage</display-name>
+    <servlet-name>HomePage</servlet-name>
+    <servlet-class>osa2.HomePage</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Hello</servlet-name>
-    <url-pattern>/Hello</url-pattern>
+    <servlet-name>HomePage</servlet-name>
+    <url-pattern>/HomePage</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>EsimeneSessionId</display-name>
-    <servlet-name>EsimeneSessionId</servlet-name>
-    <servlet-class>osa2.EsimeneSessionId</servlet-class>
+    <display-name>SessionCount</display-name>
+    <servlet-name>SessionCount</servlet-name>
+    <servlet-class>osa2.SessionCount</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>EsimeneSessionId</servlet-name>
-    <url-pattern>/EsimeneSessionId</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>TeineCounter</display-name>
-    <servlet-name>TeineCounter</servlet-name>
-    <servlet-class>osa2.TeineCounter</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>TeineCounter</servlet-name>
-    <url-pattern>/TeineCounter</url-pattern>
+    <servlet-name>SessionCount</servlet-name>
+    <url-pattern>/SessionCount</url-pattern>
   </servlet-mapping>
   <listener>
     <listener-class>
-		osa2.TeineCounter
+		osa2.SessionCount
 	</listener-class>
   </listener>
   <servlet>
     <description></description>
-    <display-name>KolmasLogOut</display-name>
-    <servlet-name>KolmasLogOut</servlet-name>
-    <servlet-class>osa2.KolmasLogOut</servlet-class>
+    <display-name>LogOut</display-name>
+    <servlet-name>LogOut</servlet-name>
+    <servlet-class>osa2.LogOut</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>KolmasLogOut</servlet-name>
-    <url-pattern>/KolmasLogOut</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>Hello2</display-name>
-    <servlet-name>Hello2</servlet-name>
-    <servlet-class>praktikum2.Hello2</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Hello2</servlet-name>
-    <url-pattern>/Hello2</url-pattern>
+    <servlet-name>LogOut</servlet-name>
+    <url-pattern>/LogOut</url-pattern>
   </servlet-mapping>
 </web-app>
