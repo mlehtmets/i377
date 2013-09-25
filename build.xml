@@ -68,7 +68,7 @@
 	<ivy:resolve file="${basedir}/ivy.xml" log="downloadonly" />
 	<ivy:retrieve pattern="${ivy.retrieve.pattern}" conf="default" />
 </target>
-
+<!--
 <target name="deploy" depends="war">
 	<taskdef name="deploy" classname="org.apache.catalina.ant.DeployTask" classpathref="classpath.tomcat"/>
 	<deploy url="${managerUrl}" username="${managerUsername}" password="${managerPassword}" path="${deployContextPath}" update="true" war="file:${war.file} "/>
@@ -78,7 +78,7 @@
 	<taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask"/>
 	<undeploy url="${managerUrl}" username="${managerUsername}" password="${managerPassword}" path="${deployContextPath}"/>
 </target>
-	
+-->
 <!-- <target name="copy.resources">
 	<copy todir="${classes.dir}" includeemptydirs="false">
 		<fileset dir="${src.dir}" excludes="**/*.java"/>
