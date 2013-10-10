@@ -13,7 +13,7 @@
 <jsp:include page="partial_menu.jsp" />
 	
 	<br><br><br>
-	<form method="GET" action="/RassK/Search">
+	<form method="GET" action="/mlehtmets/Search">
 		<input name="searchString" id="searchStringBox" value="${param.searchString}" />
 		<input type="submit" id="filterButton" value="Filtreeri" />
 		<br/><br/>
