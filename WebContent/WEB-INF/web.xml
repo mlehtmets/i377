@@ -9,59 +9,37 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>HomePage</display-name>
-    <servlet-name>HomePage</servlet-name>
-    <servlet-class>osa2.HomePage</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>HomePage</servlet-name>
-    <url-pattern>/HomePage</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>SessionCount</display-name>
-    <servlet-name>SessionCount</servlet-name>
-    <servlet-class>osa2.SessionCount</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>SessionCount</servlet-name>
-    <url-pattern>/SessionCount</url-pattern>
-  </servlet-mapping>
-  <listener>
-    <listener-class>
-		osa2.SessionCount
-	</listener-class>
-  </listener>
-  <servlet>
-    <description></description>
-    <display-name>LogOut</display-name>
-    <servlet-name>LogOut</servlet-name>
-    <servlet-class>osa2.LogOut</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>LogOut</servlet-name>
-    <url-pattern>/LogOut</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>Praktikum3</display-name>
-    <servlet-name>Praktikum3</servlet-name>
-    <servlet-class>Praktikum3</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Praktikum3</servlet-name>
-    <url-pattern>/Praktikum3</url-pattern>
-  </servlet-mapping>
-  <servlet>
+    <servlet>
     <description></description>
     <display-name>Search</display-name>
     <servlet-name>Search</servlet-name>
-    <servlet-class>osa3.Search</servlet-class>
+    <servlet-class>servlets.Search</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Search</servlet-name>
     <url-pattern>/Search</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Add</display-name>
+    <servlet-name>Add</servlet-name>
+    <servlet-class>servlets.Add</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Add</servlet-name>
+    <url-pattern>/Add</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Admin</display-name>
+    <servlet-name>Admin</servlet-name>
+    <servlet-class>servlets.Admin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Admin</servlet-name>
+    <url-pattern>/Admin</url-pattern>
+  </servlet-mapping>
+  <listener>
+    <listener-class>listeners.InitializerListener</listener-class>
+  </listener>
 </web-app>
