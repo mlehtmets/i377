@@ -44,4 +44,24 @@
     <servlet-name>LogOut</servlet-name>
     <url-pattern>/LogOut</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Praktikum3</display-name>
+    <servlet-name>Praktikum3</servlet-name>
+    <servlet-class>Praktikum3</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Praktikum3</servlet-name>
+    <url-pattern>/Praktikum3</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Search</display-name>
+    <servlet-name>Search</servlet-name>
+    <servlet-class>osa3.Search</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Search</servlet-name>
+    <url-pattern>/Search</url-pattern>
+  </servlet-mapping>
 </web-app>

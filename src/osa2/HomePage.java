@@ -20,7 +20,7 @@ public class HomePage extends HttpServlet {
 		response.setContentType("text/html");
 		HttpSession session = request.getSession();
 		String ssnId = session.getId();
-		pw.println("Your session Id is " + ssnId + "<br>");
+		pw.println("Your session id is " + ssnId + "<br>");
 		
 		//Sessiooni atribuudi seadmine
 		pw.println("Session attribute is " + request.getParameter("param") + "<br>");
