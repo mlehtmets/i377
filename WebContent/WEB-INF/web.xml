@@ -10,7 +10,7 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <listener>
-    <listener-class>listeners.InitializerListener</listener-class>
+    <listener-class>listeners.StartListener</listener-class>
   </listener>
     <servlet>
     <description></description>
