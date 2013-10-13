@@ -30,7 +30,7 @@ public class Search extends HttpServlet {
 					addData(request);
 				}
 				
-				request.getRequestDispatcher("WEB-INF/jsp/search.jsp").forward(request, response);
+				request.getRequestDispatcher("WEB-INF/search.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
