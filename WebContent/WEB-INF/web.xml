@@ -9,6 +9,9 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+    <listener>
+    <listener-class>listeners.InitializerListener</listener-class>
+  </listener>
     <servlet>
     <description></description>
     <display-name>Search</display-name>
@@ -39,7 +42,4 @@
     <servlet-name>Admin</servlet-name>
     <url-pattern>/Admin</url-pattern>
   </servlet-mapping>
-  <listener>
-    <listener-class>listeners.InitializerListener</listener-class>
-  </listener>
 </web-app>

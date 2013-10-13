@@ -5,7 +5,7 @@
 <dependencies>
 	<dependency org="javax.servlet" name="servlet-api" rev="2.5"/>
 	
-	<dependency org="org.hsqldb" name="hsqldb" rev="2.3.0"/>
+	<dependency org="org.hsqldb" name="hsqldb" rev="2.3.1"/>
 	
     <dependency org="org.apache.ant" name="ant" rev="1.9.2"/>
     

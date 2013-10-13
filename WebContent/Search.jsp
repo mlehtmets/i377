@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,7 +14,7 @@
 <jsp:include page="partial_menu.jsp" />
 	
 	<br><br><br>
-	<form method="GET" action="/mlehtmets/Search">
+	<form method="get" action="/mlehtmets/Search">
 		<input name="searchString" id="searchStringBox" value="${param.searchString}" />
 		<input type="submit" id="filterButton" value="Filtreeri" />
 		<br/><br/>
@@ -26,8 +27,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${sessionScope['data']}"
-							var="each">
+				<c:forEach items="${sessionScope['data']}" var="each">
 					<tr>
 						<td>
 						<div id="row_${each.code}">${each.name}</div></td>

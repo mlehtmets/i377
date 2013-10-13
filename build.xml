@@ -14,6 +14,7 @@
 <property name="managerPassword" value="tomcat" />
 <property name="ivy.retrieve.pattern" location="${lib.dir}/[artifact][type][revision].[ext]" />
 <property name="ivylib.dir" location="${basedir}/lib" />
+<property name="tomcat.dir" value="/opt/tomcat7/" />
 
 <!-- Pathid -->	
 <path id="compile.classpath">
@@ -26,7 +27,7 @@
 </path>
 
 <path id="classpath.tomcat">
-	<fileset dir="${tomcat.dir}/lib">
+	<fileset dir="${tomcat.dir}">
 		<include name="*.jar" />
 	</fileset>
 </path>
@@ -47,7 +48,7 @@
 </target>
 
 <target name="compile" depends="clean, init, retrieve">
-	<javac srcdir="${src.dir}" destdir="${classes.dir}" source="1.6" target="1.6" includeantruntime="false">
+	<javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false">
 		<classpath refid="compile.classpath" />
 	</javac>
 </target>
@@ -59,7 +60,9 @@
 <target name="war" depends="compile">
 	<war destfile="${war.file}" webxml="${webcontent.dir}/WEB-INF/web.xml">
 		<classes dir="${classes.dir}"/>
-		<fileset dir="${webcontent.dir}" excludes="**/servlet-apijar2.5.jar"/>
+		<fileset dir="${webcontent.dir}" excludes="**/servlet-api*.jar,**/jsp-api*.jar "/>
+		<fileset dir="${src.dir}" includes="**/*.sql"/>
+		<fileset dir="." includes="lib/*.jar"/>
 	</war>
 </target>
 
@@ -68,12 +71,12 @@
 	<ivy:resolve file="${basedir}/ivy.xml" log="downloadonly" />
 	<ivy:retrieve pattern="${ivy.retrieve.pattern}" conf="default" />
 </target>
-<!--
+
 <target name="deploy" depends="war">
 	<taskdef name="deploy" classname="org.apache.catalina.ant.DeployTask" classpathref="classpath.tomcat"/>
 	<deploy url="${managerUrl}" username="${managerUsername}" password="${managerPassword}" path="${deployContextPath}" update="true" war="file:${war.file} "/>
 </target>
-
+<!--
 <target name="undeploy" description="Remove web application">
 	<taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask"/>
 	<undeploy url="${managerUrl}" username="${managerUsername}" password="${managerPassword}" path="${deployContextPath}"/>
