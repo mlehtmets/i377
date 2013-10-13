@@ -13,7 +13,7 @@ public class Dao extends AbstractDao {
 		 List<Unit> data = new ArrayList<Unit>(); 
 		  try {
 			  st = getConnection().createStatement(); 
-			  rs = st.executeQuery("SELECT * FROM data");
+			  rs = st.executeQuery("SELECT * FROM unit");
 			  
 			  while(rs.next()){
 				  		int id = rs.getInt(1);
@@ -71,17 +71,6 @@ public class Dao extends AbstractDao {
 		
 		return result;
 	}
-	
-	public void flushDataDb(){
-		try {
-			st = getConnection().createStatement();
-			st.execute("TRUNCATE SCHEMA public AND COMMIT");
-		} catch (Exception e){
-			throw new RuntimeException(e);
-		} finally {
-			closeResources();
-		}
-	}
 
 	public boolean deleteUnit(int id){
 		boolean done = false;
@@ -99,4 +88,17 @@ public class Dao extends AbstractDao {
 		
 		return done;
 	}
+	
+	
+	public void flushDataDb(){
+		try {
+			st = getConnection().createStatement();
+			st.execute("TRUNCATE SCHEMA public AND COMMIT");
+		} catch (Exception e){
+			throw new RuntimeException(e);
+		} finally {
+			closeResources();
+		}
+	}
+
 }
