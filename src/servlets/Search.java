@@ -20,10 +20,10 @@ public class Search extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Unit> units = new ArrayList<Unit>();
-		String activity = request.getParameter("do");
+		String method = request.getParameter("do");
 		String searchString = request.getParameter("searchString");
 		
-		if ("delete".equals(activity)) {
+		if ("delete".equals(method)) {
 			try {
 				new Dao().deleteById(Integer.parseInt(request.getParameter("id")));
 			} catch (SQLException e) {e.printStackTrace();}
@@ -38,7 +38,9 @@ public class Search extends HttpServlet {
 		else{
 			try {
 				units = new Dao().searchUnit(request.getParameter("searchString"));
-			} catch (SQLException e) {e.printStackTrace();}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				}
 		}
 		request.setAttribute("units", units);
 				
