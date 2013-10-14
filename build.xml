@@ -53,7 +53,8 @@
 	</javac>
 	<copy todir="${classes.dir}">
 		<fileset dir="${src.dir}">
-			<include name="*.sql"/>
+			<include name="schema.sql"/>
+			<include name="testdata.sql"/>
 		</fileset>
 	</copy>
 </target>
@@ -66,8 +67,6 @@
 	<war destfile="${war.file}" webxml="${webcontent.dir}/WEB-INF/web.xml">
 		<classes dir="${classes.dir}"/>
 		<fileset dir="${webcontent.dir}" excludes="**/servlet-api*.jar,**/jsp-api*.jar "/>
-		<fileset dir="${src.dir}" includes="**/*.sql"/>
-		<fileset dir="." includes="lib/*.jar"/>
 	</war>
 </target>
 
