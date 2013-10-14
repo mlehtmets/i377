@@ -53,8 +53,7 @@
 	</javac>
 	<copy todir="${classes.dir}">
 		<fileset dir="${src.dir}">
-			<include name="schema.sql"/>
-			<include name="testdata.sql"/>
+			<include name="*.sql"/>
 		</fileset>
 	</copy>
 </target>
