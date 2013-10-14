@@ -35,4 +35,15 @@ public abstract class AbstractDao {
         DbUtils.closeQuietly(st);
         DbUtils.closeQuietly(connection);
     }
+    
+    protected void executeQuery(String queryString) {
+		try {
+			st = getConnection().createStatement();
+			st.executeUpdate(queryString);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		} finally {
+			closeResources();
+		}
+	}
 }

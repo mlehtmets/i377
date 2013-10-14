@@ -12,9 +12,9 @@
 <property name="managerUrl" value="http://localhost.8080/manager/text/" />
 <property name="managerUsername" value="tomcat" />
 <property name="managerPassword" value="tomcat" />
-<property name="ivy.retrieve.pattern" location="${lib.dir}/[artifact][type][revision].[ext]" />
+<property name="ivy.retrieve.pattern" location="${lib.dir}/[artifact]-[type]-[revision].[ext]" />
 <property name="ivylib.dir" location="${basedir}/lib" />
-<property name="tomcat.dir" location="C:\tomcat\apache-tomcat-7.0.42" />
+
 
 <!-- Pathid -->	
 <path id="compile.classpath">

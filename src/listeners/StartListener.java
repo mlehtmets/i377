@@ -1,34 +1,29 @@
 package listeners;
 
-
 import java.io.File;
-import java.sql.*;
-import java.util.Enumeration;
+
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import dao.AbstractDao;
+
 import dao.SetupDao;
 
 public class StartListener implements ServletContextListener {
 
-    public StartListener() {
-        // TODO Auto-generated constructor stub
-    }
-    @Override
-    public void contextInitialized(ServletContextEvent arg0) {
-        SetupDao setup = new SetupDao();
-        if(!databaseExists()){
-        	System.out.println("Cannot find database, creating new");
-            setup.createSchema();
-            setup.insertTestData();
-        }
-    }
-    @Override
-    public void contextDestroyed(ServletContextEvent arg0) {
-    	
-    }
-    
-    private boolean databaseExists() {
-        return new File(System.getProperty("user.home") + "/data/mlehtmets/db.script").exists();
-     }
+	@Override
+	public void contextDestroyed(ServletContextEvent arg0) {
+
+	}
+
+	@Override
+	public void contextInitialized(ServletContextEvent arg0) {
+		String home =System.getProperty("user.home");
+		String db = "/data/mlehtmets/db.script";
+		Boolean fileExsist = new File(home+db).exists();
+		if(fileExsist==false){
+			SetupDao sd = new SetupDao();
+		     sd.createSchema();
+		     sd.insertTestData();
+		}
+	}
+
 }

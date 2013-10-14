@@ -18,7 +18,7 @@
 	<li><a href="/mlehtmets/Admin?do=insert_data" id="menu_InsertData">Sisesta näidisandmed</a></li>
 </ul>
 	<br><br><br>
-	<form method="post" action="/mlehtmets/Add">
+	<form method="post" action="Add">
 		<table class="formTable" id="formTable">
 			<tbody>
 				<tr>

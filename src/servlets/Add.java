@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,9 +28,15 @@ public class Add extends HttpServlet {
 		String code = request.getParameter("code");
 		String name = request.getParameter("name");
 		
-		Unit unit = new Unit(name,code);
-		unit.setId(new Dao().addUnit(unit));
-		
+		Unit unit = new Unit();
+		unit.setName(name);
+		unit.setCode(code);
+
+		try {
+			new Dao().addUnit(unit);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		response.sendRedirect("Search");
 	}
 

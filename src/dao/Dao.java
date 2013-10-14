@@ -10,95 +10,76 @@ public class Dao extends AbstractDao {
 
 	public List<Unit> getAllUnits() throws SQLException {
 		
-		 List<Unit> data = new ArrayList<Unit>(); 
+		 List<Unit> units = new ArrayList<Unit>(); 
 		  try {
 			  st = getConnection().createStatement(); 
 			  rs = st.executeQuery("SELECT * FROM unit");
 			  
 			  while(rs.next()){
-				  		int id = rs.getInt(1);
-				  		String name = rs.getString(2);
-				  		String code = rs.getString(3);
-				  		Unit unit = new Unit(name, code); 
-		        		unit.setId(id);
-		        		data.add(unit);
+				  Unit unit = new Unit();
+					unit.setId(rs.getInt(1));
+					unit.setName(rs.getString(2));
+					unit.setCode(rs.getString(3));
+					units.add(unit);
 		        }
 		  } finally {
 			  closeResources(); 
 
 		    }
-		return data; 
+		return units; 
 	}
 	
-	public List<Unit> searchUnit(String keyword) throws SQLException{
-		List<Unit> data = new ArrayList<Unit>();
+	public List<Unit> searchUnit(String name) throws SQLException{
+		List<Unit> units = new ArrayList<Unit>();
 		
 		try {
-			st = getConnection().createStatement();
-			pst = connection.prepareStatement("SELECT * FROM unit WHERE LCASE(NAME) LIKE ?");
-			pst.setString(1, "%" + keyword.toLowerCase() + "%");
+			pst = getConnection().prepareStatement("SELECT * FROM unit WHERE UPPER(name) LIKE ?");
+			pst.setString(1, "%"+name.toUpperCase()+"%");
 			rs = pst.executeQuery();
-			
 			while(rs.next()){
-				int id = rs.getInt(1);
-				String name = rs.getString(2);
-				String code = rs.getString(3);
-				Unit unit = new Unit(name, code);
-				unit.setId(id);
-				data.add(unit);
+				Unit unit = new Unit();
+				unit.setId(rs.getInt(1));
+				unit.setName(rs.getString(3));
+				unit.setCode(rs.getString(3));
+				units.add(unit);
 			}
 		} finally {
 			closeResources();
 		}
 		
-		return data;
+		return units;
 	}
 
-	public int addUnit(Unit unit){
-		int result = -1;
-		
+	public void addUnit(Unit unit) throws SQLException{
 		try {
-			st = getConnection().createStatement();
-			pst = connection.prepareStatement("INSERT INTO UNIT VALUES(NEXT VALUE FOR seq1, ?,?)");
+			pst = getConnection().prepareStatement("INSERT INTO unit (id, name, code) VALUES (NEXT VALUE FOR seq1, ?, ?)");
 			pst.setString(1, unit.getName());
 			pst.setString(2, unit.getCode());
-			result = pst.executeUpdate();
-		} catch (Exception e){
-			throw new RuntimeException(e);
+			pst.execute();
 		} finally {
 			closeResources();
 		}
-		
-		return result;
 	}
 
-	public boolean deleteUnit(int id){
-		boolean done = false;
-		
-		try {
-			st = getConnection().createStatement();
-			pst = connection.prepareStatement("DELETE FROM unit WHERE ID = ?");
-			pst.setInt(1, id);
-			done = pst.execute();
-		} catch (Exception e){
-			throw new RuntimeException(e);
-		} finally {
-			closeResources();
-		}
-		
-		return done;
+public void deleteList() throws SQLException{
+	try{
+		st = getConnection().createStatement();
+		rs = st.executeQuery("TRUNCATE SCHEMA public and COMMIT");
+	} finally {
+		closeResources();
 	}
+}
+
+public void deleteById(int id) throws SQLException {
+	try {
+		pst = getConnection().prepareStatement("DELETE FROM unit WHERE id = ?;");
+		pst.setInt(1, id);
+		pst.execute();
+		
 	
-	
-	public void flushDataDb(){
-		try {
-			st = getConnection().createStatement();
-			st.execute("TRUNCATE SCHEMA public AND COMMIT");
-		} catch (Exception e){
-			throw new RuntimeException(e);
-		} finally {
-			closeResources();
-		}
-	}
+	} finally {
+	      closeResources();
+	    }
+}
 
 }

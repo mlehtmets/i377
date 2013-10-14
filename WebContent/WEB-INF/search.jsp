@@ -18,7 +18,7 @@
 	<li><a href="/mlehtmets/Admin?do=insert_data" id="menu_InsertData">Sisesta näidisandmed</a></li>
 </ul>	
 	<br><br><br>
-	<form method="get" action="/mlehtmets/Search">
+	<form method="get" action="Search">
 		<input name="searchString" id="searchStringBox" value="${param.searchString}" />
 		<input type="submit" id="filterButton" value="Filtreeri" />
 		<br/><br/>
@@ -36,7 +36,7 @@
 						<td>
 						<div id="row_${each.code}">${each.name}</div></td>
 						<td>${each.code}</td>
-						<td><a href="/mlehtmets/Search?do=delete&id=${each.id}" id="delete_${each.code}">Kustuta</a></td>
+						<td><a href="Search?do=delete&id=${each.id}" id="delete_${each.code}">Kustuta</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

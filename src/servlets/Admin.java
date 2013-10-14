@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,10 +21,15 @@ public class Admin extends HttpServlet {
 		if(request.getParameter("do") != null){
 			String method = request.getParameter("do");
 			
-			if(method.equals("clear_data")){
-				clear();
-			} else if(method.equals("insert_data")){
-				insert();
+			if("clear_data".equals(method)){
+				try{ 
+					new Dao().deleteList();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			else if("insert_data".equals(method)){
+				new SetupDao().insertTestData();
 			}
 			
 			response.sendRedirect("Search");
@@ -32,13 +39,4 @@ public class Admin extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
-	
-	private void clear(){
-		new Dao().flushDataDb();
-	}
-	
-	private void insert(){
-		new SetupDao().insertTestData();
-	}
-
 }
