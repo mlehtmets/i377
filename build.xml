@@ -51,6 +51,11 @@
 	<javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false">
 		<classpath refid="compile.classpath" />
 	</javac>
+	<copy todir="${classes.dir}">
+		<fileset dir="${src.dir}">
+			<include name="*.sql"/>
+		</fileset>
+	</copy>
 </target>
 
 <target name="clean">
@@ -76,4 +81,5 @@
 	<taskdef name="deploy" classname="org.apache.catalina.ant.DeployTask" classpathref="classpath.tomcat"/>
 	<deploy url="${managerUrl}" username="${managerUsername}" password="${managerPassword}" path="${deployContextPath}" update="true" war="file:${war.file} "/>
 </target>
+
 </project>
