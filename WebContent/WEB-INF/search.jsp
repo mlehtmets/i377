@@ -7,16 +7,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Search</title>
 <style type="text/css">
-	<%@ include file="/static/css/style.css" %>
+	<%@ include file="/WEB-INF/style.css" %>
 </style>
 </head>
 <body>
-<ul id="menu">
-	<li><a href="/mlehtmets/Search" id="menu_Search">Otsi</a></li>
-	<li><a href="/mlehtmets/Add" id="menu_Add">Lisa</a></li>
-	<li><a href="/mlehtmets/Admin?do=clear_data" id="menu_ClearData">Tühjenda</a></li>
-	<li><a href="/mlehtmets/Admin?do=insert_data" id="menu_InsertData">Sisesta näidisandmed</a></li>
-</ul>	
+<%@include file="menu.jsp" %>
 	<br><br><br>
 	<form method="get" action="Search">
 		<input name="searchString" id="searchStringBox" value="${param.searchString}" />
