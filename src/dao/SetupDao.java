@@ -8,11 +8,11 @@ import org.apache.tools.ant.taskdefs.SQLExec;
 public class SetupDao extends AbstractDao {
 	
     public void createSchema() { 
-        executeSqlFromFile(getClassPathFile("/schema.sql")); 
+        executeSqlFromFile(getClassPathFile("schema.sql")); 
     }
 
     public void insertTestData() { 
-        executeSqlFromFile(getClassPathFile("/testdata.sql")); 
+        executeSqlFromFile(getClassPathFile("testdata.sql")); 
     }
     
     private String getClassPathFile(String fileName) { 
