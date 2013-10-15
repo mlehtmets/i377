@@ -18,25 +18,35 @@ public class Admin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getParameter("do") != null){
-			String method = request.getParameter("do");
-			
-			if("clear_data".equals(method)){
-				try{ 
-					new Dao().deleteList();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			else if("insert_data".equals(method)){
-				new SetupDao().insertTestData();
-			}
-			
-			response.sendRedirect("Search");
-		}
+		doStuff(request);
+		response.sendRedirect("Search");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+	}
+	
+	private void doStuff(HttpServletRequest request){
+		String behaviour = request.getParameter("do");
+		if("insert_data".equals(behaviour)){
+			insertDefaultValues();
+		}else if("clear_data".equals(behaviour)){
+			clear();
+		}
+	}
+
+	private void clear(){
+		Dao uDao = new Dao();
+		try {
+			uDao.deleteList();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void insertDefaultValues(){
+		System.out.println("Adding default values once more");
+		SetupDao setup = new SetupDao();
+		setup.insertTestData();
 	}
 }

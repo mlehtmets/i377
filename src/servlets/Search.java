@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.Dao;
 import db.Unit;
@@ -19,35 +20,65 @@ public class Search extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Unit> units = new ArrayList<Unit>();
-		String method = request.getParameter("do");
-		String searchString = request.getParameter("searchString");
-		
-		if ("delete".equals(method)) {
-			try {
-				new Dao().deleteById(Integer.parseInt(request.getParameter("id")));
-			} catch (SQLException e) {e.printStackTrace();}
-		}
-		
-		if (searchString == null) {
-			try {
-				units = new Dao().getAllUnits();		
-			} catch (SQLException e) {e.printStackTrace();}
-		
-		}
-		else{
-			try {
-				units = new Dao().searchUnit(request.getParameter("searchString"));
-			} catch (SQLException e) {
-				e.printStackTrace();
-				}
-		}
-		request.setAttribute("units", units);
-				
-				request.getRequestDispatcher("WEB-INF/search.jsp").forward(request, response);
+		doStuff(request);
+		request.getRequestDispatcher("WEB-INF/search.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+	}
+	
+	private void doStuff(HttpServletRequest request){
+		String behaviour = request.getParameter("do");
+		String searchString = request.getParameter("searchString");
+		List<Unit> displayedUnits = new ArrayList<Unit>();
+
+		if("delete".equals(behaviour)){
+			Dao uDao = new Dao();
+			try {
+				//System.out.println("Deleting item that has id " + request.getParameter("id"));
+				uDao.deleteById(Integer.parseInt(request.getParameter("id")));
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		if(searchString == null){
+			displayedUnits = getAllUnits(request);
+		}else{
+			displayedUnits = searchUnits(request);
+		}		
+		request.setAttribute("displayedUnits", displayedUnits);
+	}
+
+	private List<Unit> searchUnits(HttpServletRequest request){
+		String paramText = "searchString"; //do
+		HttpSession session = request.getSession();
+		String param = request.getParameter(paramText);
+		String sessionParam = (String)session.getAttribute(paramText);
+		if(param != null){
+			request.getSession().setAttribute(paramText, param);
+			sessionParam = param;
+		}
+		List<Unit> foundUnits = new ArrayList<Unit>();
+		Dao uDao = new Dao();
+		try {
+			foundUnits = uDao.searchUnit(sessionParam);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return foundUnits;
+	}
+
+	private List<Unit> getAllUnits(HttpServletRequest request){
+		List<Unit> allUnits = new ArrayList<Unit>();
+		Dao uDao = new Dao();
+		try {
+			allUnits = uDao.getAllUnits();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return allUnits;
 	}
 }

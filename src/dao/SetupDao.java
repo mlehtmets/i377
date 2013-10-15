@@ -19,6 +19,10 @@ public class SetupDao extends AbstractDao {
         return getClass().getClassLoader().getResource(fileName).getFile();
     }
     
+    public void destroy() {
+		executeQuery("DROP SCHEMA PUBLIC CASCADE;");
+	}
+    
     private void executeSqlFromFile(String sqlFilePath) {
 
         Project project = new Project();

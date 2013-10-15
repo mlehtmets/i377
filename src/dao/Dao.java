@@ -34,7 +34,7 @@ public class Dao extends AbstractDao {
 		
 		try {
 			pst = getConnection().prepareStatement("SELECT * FROM unit WHERE UPPER(name) LIKE ?");
-			pst.setString(1, "%"+name.toUpperCase()+"%");
+			pst.setString(1, "%"+name.toLowerCase()+"%");
 			rs = pst.executeQuery();
 			while(rs.next()){
 				Unit unit = new Unit();

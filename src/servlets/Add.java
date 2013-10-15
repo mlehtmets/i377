@@ -2,6 +2,8 @@ package servlets;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,6 +27,12 @@ public class Add extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		addUnit(request);
+		getUnits(request);
+		response.sendRedirect("Search"); 
+	}
+	
+	private void addUnit(HttpServletRequest request){
 		String code = request.getParameter("code");
 		String name = request.getParameter("name");
 		
@@ -37,7 +45,19 @@ public class Add extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		response.sendRedirect("Search");
+	}
+
+	private void getUnits(HttpServletRequest request){
+		List<Unit> unitsList = new ArrayList<Unit>();
+
+		Dao unit = new Dao();
+		try {
+			unitsList = unit.getAllUnits();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		request.setAttribute("unitsList", unitsList);
+		System.out.println("unitsList on " + unitsList.toString());
 	}
 
 }

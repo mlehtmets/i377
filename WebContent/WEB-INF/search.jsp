@@ -14,7 +14,7 @@
 <%@include file="menu.jsp" %>
 	<br><br><br>
 	<form method="get" action="Search">
-		<input name="searchString" id="searchStringBox" value="${param.searchString}" />
+		<input name="searchString" id="searchStringBox" value="" />
 		<input type="submit" id="filterButton" value="Filtreeri" />
 		<br/><br/>
 		<table class="listTable" id="listTable">
@@ -26,7 +26,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${sessionScope['data']}" var="each">
+				<c:forEach items="${requestScope['displayedUnits']}" var="each">
 					<tr>
 						<td>
 						<div id="row_${each.code}">${each.name}</div></td>
