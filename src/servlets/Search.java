@@ -36,7 +36,6 @@ public class Search extends HttpServlet {
 		if("delete".equals(behaviour)){
 			Dao uDao = new Dao();
 			try {
-				//System.out.println("Deleting item that has id " + request.getParameter("id"));
 				uDao.deleteById(Integer.parseInt(request.getParameter("id")));
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
@@ -53,7 +52,7 @@ public class Search extends HttpServlet {
 	}
 
 	private List<Unit> searchUnits(HttpServletRequest request){
-		String paramText = "searchString"; //do
+		String paramText = "searchString";
 		HttpSession session = request.getSession();
 		String param = request.getParameter(paramText);
 		String sessionParam = (String)session.getAttribute(paramText);
