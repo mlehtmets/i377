@@ -57,7 +57,6 @@ public class Add extends HttpServlet {
 			e.printStackTrace();
 		}
 		request.setAttribute("unitsList", unitsList);
-		System.out.println("unitsList on " + unitsList.toString());
 	}
 
 }

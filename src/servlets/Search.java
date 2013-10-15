@@ -20,7 +20,7 @@ public class Search extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doStuff(request);
+		doThings(request);
 		request.getRequestDispatcher("WEB-INF/search.jsp").forward(request, response);
 	}
 
@@ -28,7 +28,7 @@ public class Search extends HttpServlet {
 		// TODO Auto-generated method stub
 	}
 	
-	private void doStuff(HttpServletRequest request){
+	private void doThings(HttpServletRequest request){
 		String behaviour = request.getParameter("do");
 		String searchString = request.getParameter("searchString");
 		List<Unit> displayedUnits = new ArrayList<Unit>();
