@@ -1,7 +1,6 @@
-package servlets;
+package controllers;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,26 +26,18 @@ public class Admin extends HttpServlet {
 	}
 	
 	private void doStuff(HttpServletRequest request){
-		String behaviour = request.getParameter("do");
-		if("insert_data".equals(behaviour)){
-			insertDefaultValues();
-		}else if("clear_data".equals(behaviour)){
-			clear();
-		}
-	}
-
-	private void clear(){
-		Dao uDao = new Dao();
 		try {
-			uDao.deleteList();
-		} catch (SQLException e) {
+			if(request.getParameter("do").equals("insert_data")){
+				new SetupDao().insertTestData();
+			} else if(request.getParameter("do").equals("clear_data")) {
+					new Dao().deleteList();
+			} else if (request.getParameter("do").equals("delete")) {
+				int id = Integer.parseInt(request.getParameter("id"));
+					new Dao().deleteUnit(id);
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void insertDefaultValues(){
-		System.out.println("Adding default values once more");
-		SetupDao setup = new SetupDao();
-		setup.insertTestData();
-	}
 }

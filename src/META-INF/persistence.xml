@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence">
+	<persistenceunit name="my-hsql-unit" transactiontype="RESOURCE_LOCAL">
+	
+		<!-- <class>model.Unit</class>  -->
+		
+		<mapping-file>META-INF/namedQueries.xml</mapping-file>
+		
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver" />
+			<property name="javax.persistence.jdbc.user" value="sa" />
+			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:hsqldb:file:${user.home}/data/mlehtmets/jpa;shutdown=true" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="validate" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.archive.autodetection" value="class" />
+
+		</properties>
+	</persistenceunit>
+</persistence>

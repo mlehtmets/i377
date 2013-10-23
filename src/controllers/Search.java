@@ -1,4 +1,4 @@
-package servlets;
+package controllers;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.Unit;
 import dao.Dao;
-import db.Unit;
 /**
  * Servlet implementation class Search
  */
@@ -20,7 +20,12 @@ public class Search extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doThings(request);
+		try {
+			doThings(request);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		request.getRequestDispatcher("WEB-INF/search.jsp").forward(request, response);
 	}
 
@@ -28,7 +33,7 @@ public class Search extends HttpServlet {
 		// TODO Auto-generated method stub
 	}
 	
-	private void doThings(HttpServletRequest request){
+	private void doThings(HttpServletRequest request) throws SQLException{
 		String behaviour = request.getParameter("do");
 		String searchString = request.getParameter("searchString");
 		List<Unit> displayedUnits = new ArrayList<Unit>();
@@ -36,10 +41,8 @@ public class Search extends HttpServlet {
 		if("delete".equals(behaviour)){
 			Dao uDao = new Dao();
 			try {
-				uDao.deleteById(Integer.parseInt(request.getParameter("id")));
+				uDao.deleteUnit(Integer.parseInt(request.getParameter("id")));
 			} catch (NumberFormatException e) {
-				e.printStackTrace();
-			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
@@ -49,7 +52,7 @@ public class Search extends HttpServlet {
 			displayedUnits = searchUnits(request);
 		}		
 		request.setAttribute("displayedUnits", displayedUnits);
-		//System.out.println(displayedUnits);
+		System.out.println(displayedUnits);
 	}
 
 	private List<Unit> searchUnits(HttpServletRequest request){

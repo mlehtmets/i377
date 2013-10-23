@@ -1,17 +1,16 @@
-package servlets;
+package controllers;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Unit;
 import dao.Dao;
-import db.Unit;
 
 /**
  * Servlet implementation class Add
@@ -28,7 +27,6 @@ public class Add extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		addUnit(request);
-		getUnits(request);
 		response.sendRedirect("Search"); 
 	}
 	
@@ -45,18 +43,6 @@ public class Add extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
-
-	private void getUnits(HttpServletRequest request){
-		List<Unit> unitsList = new ArrayList<Unit>();
-
-		Dao unit = new Dao();
-		try {
-			unitsList = unit.getAllUnits();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		request.setAttribute("unitsList", unitsList);
 	}
 
 }
