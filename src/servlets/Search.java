@@ -49,6 +49,7 @@ public class Search extends HttpServlet {
 			displayedUnits = searchUnits(request);
 		}		
 		request.setAttribute("displayedUnits", displayedUnits);
+		//System.out.println(displayedUnits);
 	}
 
 	private List<Unit> searchUnits(HttpServletRequest request){
