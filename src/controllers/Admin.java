@@ -7,7 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.Dao;
+import model.Unit;
+import dao.UnitDao;
 import dao.SetupDao;
 
 /**
@@ -30,14 +31,16 @@ public class Admin extends HttpServlet {
 			if(request.getParameter("do").equals("insert_data")){
 				new SetupDao().insertTestData();
 			} else if(request.getParameter("do").equals("clear_data")) {
-					new Dao().deleteList();
+					new UnitDao().deleteUnitList();
 			} else if (request.getParameter("do").equals("delete")) {
-				int id = Integer.parseInt(request.getParameter("id"));
-					new Dao().deleteUnit(id);
+				Long id = Long.parseLong(request.getParameter("id"));
+					new UnitDao().deleteUnit(id);
+			} else if(request.getParameter("do").equals("view_data")){
+				new UnitDao().loadUnit();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+}
 
 }

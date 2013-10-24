@@ -29,7 +29,7 @@
 				<c:forEach items="${requestScope['displayedUnits']}" var="each">
 					<tr>
 						<td>
-						<div id="row_${each.code}">${each.name}</div></td>
+						<a href="View?do=view_data&id=${each.id}" id="viewdata_${each.code}"><div id="row_${each.code}"> ${each.name} </div></td></a>
 						<td>${each.code}</td>
 						<td><a href="Search?do=delete&id=${each.id}" id="delete_${each.code}">Kustuta</a></td>
 					</tr>

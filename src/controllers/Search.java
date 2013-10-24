@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Unit;
-import dao.Dao;
+import dao.UnitDao;
 /**
  * Servlet implementation class Search
  */
@@ -20,12 +20,7 @@ public class Search extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			doThings(request);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		doThings(request);
 		request.getRequestDispatcher("WEB-INF/search.jsp").forward(request, response);
 	}
 
@@ -33,15 +28,16 @@ public class Search extends HttpServlet {
 		// TODO Auto-generated method stub
 	}
 	
-	private void doThings(HttpServletRequest request) throws SQLException{
+	private void doThings(HttpServletRequest request){
 		String behaviour = request.getParameter("do");
 		String searchString = request.getParameter("searchString");
 		List<Unit> displayedUnits = new ArrayList<Unit>();
 
 		if("delete".equals(behaviour)){
-			Dao uDao = new Dao();
+			UnitDao uDao = new UnitDao();
 			try {
-				uDao.deleteUnit(Integer.parseInt(request.getParameter("id")));
+				Long id = Long.parseLong(request.getParameter("id"));
+				uDao.deleteUnit(id);
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
 			}
@@ -65,23 +61,19 @@ public class Search extends HttpServlet {
 			sessionParam = param;
 		}
 		List<Unit> foundUnits = new ArrayList<Unit>();
-		Dao uDao = new Dao();
-		try {
-			foundUnits = uDao.searchUnit(sessionParam);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		UnitDao uDao = new UnitDao();
+
+		foundUnits = (List<Unit>) uDao.findByName(sessionParam);
+
 		return foundUnits;
 	}
 
 	private List<Unit> getAllUnits(HttpServletRequest request){
 		List<Unit> allUnits = new ArrayList<Unit>();
-		Dao uDao = new Dao();
-		try {
-			allUnits = uDao.getAllUnits();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		UnitDao uDao = new UnitDao();
+
+		allUnits = uDao.findAllUnits();
+
 		return allUnits;
 	}
 }

@@ -1,28 +1,25 @@
 package model;
 
-import java.util.List;
-
 import javax.persistence.*;
+
 @Entity
-@NamedQueries({ 
-	@NamedQuery(name="Person.findAll", query="SELECT p FROM Unit p"),
-	@NamedQuery(name="Person.findByName", query="SELECT p FROM Unit p WHERE p.name = :name"),
-})
-public class Unit {
+public class Unit{	
+	@Id
+    @SequenceGenerator(name = "my_seq", sequenceName = "SEQ1", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_seq")
+	private Long Id;
+
+	private Long super_unit_id;
+
+	public Long getId() {
+		return Id;
+	}
+	public void setId(Long id) {
+		this.Id = id;
+	}
 
 	private String name;
 	private String code;
-	
-	@Id
-    @SequenceGenerator(name="my_seq", sequenceName="SEQ_1", allocationSize=1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="my_seq")
-	private int id;
-	
-	@OneToMany(mappedBy = "unit",
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
-            fetch = FetchType.LAZY,
-            orphanRemoval = true)
-	private List<Unit> units;
 	
 	public String getName() {
 		return name;
@@ -36,12 +33,7 @@ public class Unit {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+
 	
 	//Argumentideta konstruktor!!!
 	public Unit() {}
@@ -49,8 +41,16 @@ public class Unit {
 	
 	@Override
 	public String toString() {
-		return "Unit [id=" + id + ", name=" + name + ", code=" + code + "]";
+		return "Unit [id=" + Id + ", name=" + name + ", code=" + code + " super_unit_id= " + super_unit_id + "]";
 	}
+
+	public Long getSuper_unit_id() {
+		return super_unit_id;
+	}
+	public void setSuper_unit_id(Long super_unit_id) {
+		this.super_unit_id = super_unit_id;
+	}
+
 	
 	
 	

@@ -2,14 +2,13 @@ package util;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.servlet.ServletContextEvent;
 
 public class JpaUtil {
 
 	private static EntityManagerFactory emf;
 
 	static {
-		emf = Persistence.createEntityManagerFactory("my-hsql-unit",
+		emf = Persistence.createEntityManagerFactory("unit",
 				new PropertyLoader().getPropertiesAsMap());
 	}
 
@@ -21,7 +20,4 @@ public class JpaUtil {
 		emf.close();
 	}
 
-	public void contextDestroyed(ServletContextEvent event) {
-		JpaUtil.getFactory().close();
-	}
 }

@@ -1,8 +1,6 @@
 package controllers;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,32 +11,25 @@ import model.Unit;
 import dao.UnitDao;
 
 /**
- * Servlet implementation class Add
+ * Servlet implementation class View
  */
-public class Add extends HttpServlet {
+public class View extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("WEB-INF/add.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/view.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		insertUnit(request);
-		response.sendRedirect("Search"); 
+		viewUnit(request);
+		response.sendRedirect("/Search");
 	}
-	
-	private void insertUnit(HttpServletRequest request){
-		String code = request.getParameter("code");
-		String name = request.getParameter("name");
 		
-		Unit unit = new Unit();
-		unit.setName(name);
-		unit.setCode(code);
-		
-		new UnitDao().insertUnit(name, code);
-	}
-
+		private void viewUnit(HttpServletRequest request){
+			UnitDao uDao = new UnitDao();
+			
+			uDao.loadUnit();
+		}
 }

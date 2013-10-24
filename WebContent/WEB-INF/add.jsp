@@ -25,6 +25,17 @@
 					<td><input name="code" id="codeBox" /></td>
 				</tr>
 				<tr>
+					<td>Ülemüksus:</td>
+					<td>
+					<select id="superUnitCode" name="superUnitCode" >
+					<option value="none" selected="selected"></option> 
+					</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Alamüksused:</td>
+				</tr>
+				<tr>
 					<td colspan="2" align="right"><br/>
 						<input type="submit" value="Lisa" id="addButton" />
 					</td>

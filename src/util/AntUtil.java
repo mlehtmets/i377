@@ -12,7 +12,6 @@ public class AntUtil {
             Project project = new Project();
             project.init();
             task.setProject(project);
-            task.setProject(project);
             task.setTaskType(name);
             task.setTaskName(name);
             return task;

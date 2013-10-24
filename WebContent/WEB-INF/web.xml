@@ -12,7 +12,7 @@
   <listener>
     <listener-class>listeners.StartListener</listener-class>
   </listener>
-    <servlet>
+  <servlet>
     <description></description>
     <display-name>Search</display-name>
     <servlet-name>Search</servlet-name>
@@ -41,5 +41,15 @@
   <servlet-mapping>
     <servlet-name>Admin</servlet-name>
     <url-pattern>/Admin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>View</display-name>
+    <servlet-name>View</servlet-name>
+    <servlet-class>controllers.View</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>View</servlet-name>
+    <url-pattern>/View</url-pattern>
   </servlet-mapping>
 </web-app>
